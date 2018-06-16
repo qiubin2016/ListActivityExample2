@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ListActivityExample2</string>
+    <string name="unknown_device">Unknown device</string>
+    <string name="menu_scan">Scan</string>
+    <string name="menu_stop">Stop</string>
+    <string name="titile_device">ItlDevAssistant</string>
+</resources>
