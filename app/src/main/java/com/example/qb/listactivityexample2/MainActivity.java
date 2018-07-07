@@ -35,7 +35,7 @@ public class MainActivity extends ListActivity {
             Log.d("ListActivityExample2", "null");
         } else {
             Log.d("ListActivityExample2", "not null");
-            mActionBar.setTitle(R.string.titile_device);    //设置标题
+            mActionBar.setTitle(R.string.titile_device);    //设置标题 2018
         }
 
     }
