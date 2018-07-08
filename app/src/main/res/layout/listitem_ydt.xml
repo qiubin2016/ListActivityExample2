@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/product"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TextView
+        android:id="@+id/version"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="192dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/dev_version"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/version"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/num"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="192dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svr_port" />
+
+    <TextView
+        android:id="@+id/dev_num"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/num"
+        app:layout_constraintTop_toBottomOf="@+id/dev_svr_port" />
+
+    <TextView
+        android:id="@+id/project_num"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/product" />
+
+    <TextView
+        android:id="@+id/ctrl_port"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svr_ip" />
+
+    <TextView
+        android:id="@+id/dev_product"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/product"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/dev_ctrl_port"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/ctrl_port"
+        app:layout_constraintTop_toBottomOf="@+id/dev_svr_ip" />
+
+    <TextView
+        android:id="@+id/dev_project_num"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/project_num"
+        app:layout_constraintTop_toBottomOf="@+id/dev_product" />
+
+    <TextView
+        android:id="@+id/dhcp"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="192dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/version" />
+
+    <TextView
+        android:id="@+id/dev_dhcp"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/dhcp"
+        app:layout_constraintTop_toBottomOf="@+id/dev_version" />
+
+    <TextView
+        android:id="@+id/ip"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/project_num" />
+
+    <TextView
+        android:id="@+id/svr_port"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="192dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dns" />
+
+    <TextView
+        android:id="@+id/dev_svr_port"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/svr_port"
+        app:layout_constraintTop_toBottomOf="@+id/dev_dns" />
+
+    <TextView
+        android:id="@+id/dev_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/ip"
+        app:layout_constraintTop_toBottomOf="@+id/dev_project_num" />
+
+    <TextView
+        android:id="@+id/dev_svr_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/svr_ip"
+        app:layout_constraintTop_toBottomOf="@+id/dev_gateway" />
+
+    <TextView
+        android:id="@+id/svr_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gateway" />
+
+    <TextView
+        android:id="@+id/mask"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="192dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dhcp" />
+
+    <TextView
+        android:id="@+id/dev_mask"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/mask"
+        app:layout_constraintTop_toBottomOf="@+id/dev_dhcp" />
+
+    <TextView
+        android:id="@+id/dns"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="192dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mask" />
+
+    <TextView
+        android:id="@+id/dev_dns"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/dns"
+        app:layout_constraintTop_toBottomOf="@+id/dev_mask" />
+
+    <TextView
+        android:id="@+id/dev_gateway"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/gateway"
+        app:layout_constraintTop_toBottomOf="@+id/dev_ip" />
+
+    <TextView
+        android:id="@+id/gateway"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ip" />
+</android.support.constraint.ConstraintLayout>
