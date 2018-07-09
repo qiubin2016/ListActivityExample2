@@ -28,7 +28,7 @@ public class UdpBroadcastSnd extends Thread {
     @Override
     public void run() {
         Log.d(getClass().getName(), "run1!");
-        int mCount = 3;
+//        int mCount = 3;
         MulticastSocket mMulSocket;
         DatagramPacket mPacket;
         if (0 == mData.length) {
@@ -43,9 +43,9 @@ public class UdpBroadcastSnd extends Thread {
             Log.w(getClass().getName(), "run3!");
 
             Log.d(getClass().getName(), "run3!");
-            if (0 != mCount) {
+//            if (0 != mCount) {
                 Log.d(getClass().getName(), "run4!");
-                mCount--;
+//                mCount--;
                 try {
                     mMulSocket = new MulticastSocket();
                     mPacket = new DatagramPacket(mData, mData.length, InetAddress.getByName(mBroadcastAddr), mPort);
@@ -62,12 +62,15 @@ public class UdpBroadcastSnd extends Thread {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            } else {
-                Log.d(getClass().getName(), "run exit!");
-                mRunning = false;
-                break;
-            }
+//            } else {
+//                Log.i(getClass().getName(), "run exit!");
+//                mRunning = false;
+//                break;
+//            }
         }
     }
 
+    public void exit() {
+        mRunning = false;
+    }
 }

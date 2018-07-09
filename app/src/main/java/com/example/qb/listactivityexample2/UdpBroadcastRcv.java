@@ -19,16 +19,19 @@ public class UdpBroadcastRcv extends Thread {
     String mBroadcastAddr = "0.0.0.0";//"255.255.255.255";
     DatagramSocket mSocket;
     int mRcvTimeout = 2000;    //2000ms 接收时间超过此时间会抛出异常
+    private RcvCallback mCallback;
+
 
     public UdpBroadcastRcv() {
         super();
         Log.d(getClass().getName(), "structure");
     }
 
-    public UdpBroadcastRcv(int port, String InetAddressStr) {
+    public UdpBroadcastRcv(int port, String InetAddressStr, RcvCallback callback) {
         super();
         mPort = port;
         mBroadcastAddr = mBroadcastAddr;
+        mCallback = callback;
     }
 
     private Handler mHandler = new Handler();
@@ -58,16 +61,19 @@ public class UdpBroadcastRcv extends Thread {
                     mSocket.receive(mPacket);    //在setSoTimeout()设置的时间内未收到数据则抛出异常
                 } catch (SocketTimeoutException e) {  //API说抛出SocketException异常，实应捕捉SocketTimeoutException
                     e.printStackTrace();
-                    Log.d(getClass().getName(), "Receive broadcast packets tiemout!");
+                    Log.i(getClass().getName(), "Receive broadcast packets tiemout!");
                     mSocket.close();
                     continue;
                 }
                 mSocket.close();
                 //Packet received
-                Log.d(getClass().getName(), ">>>Discovery packet received from: " + mPacket.getAddress().getHostAddress());
+                Log.i(getClass().getName(), ">>>Discovery packet received from: " + mPacket.getAddress().getHostAddress());
 //                    final String mCodeString = new String(mRecvBuf, 0, mPacket.getLength());
 //                    Log.d(getClass().getName(), ">>>Packet received; data(String): " + mCodeString + "!");
-                Log.d(getClass().getName(), ">>>Packet received; data(toHexString): " + DataConversion.toHexString(mRecvBuf, mPacket.getLength()) + "!");
+                Log.i(getClass().getName(), ">>>Packet received; data(toHexString): " + DataConversion.toHexString(mRecvBuf, mPacket.getLength()) + "!");
+                if (null != mCallback) {
+                    mCallback.onRcv(mRecvBuf, mPacket.getLength());
+                }
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.d(getClass().getName(), "Receive broadcast packets IOException!");
@@ -82,4 +88,8 @@ public class UdpBroadcastRcv extends Thread {
         mSocket.close();
     }
 
+    public interface RcvCallback {
+
+        public void onRcv(byte[] data, int length);
+    }
 }

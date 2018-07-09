@@ -56,4 +56,18 @@ public final class DataConversion {
         }
         return hexString.toString().toLowerCase();
     }
+
+    public static String byteArrayToIp(byte[] byteArray) {
+        int i = 0;
+        StringBuffer strBuffer = new StringBuffer("");
+        strBuffer.setLength(0);     //清空
+        strBuffer.append(String.valueOf(byteArray[i++]));
+        strBuffer.append(".");
+        strBuffer.append(String.valueOf(byteArray[i++]));
+        strBuffer.append(".");
+        strBuffer.append(String.valueOf(byteArray[i++]));
+        strBuffer.append(".");
+        strBuffer.append(String.valueOf(byteArray[i++]));
+        return strBuffer.toString();
+    }
 }
