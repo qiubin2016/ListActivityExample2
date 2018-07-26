@@ -159,9 +159,121 @@ public class MainActivity extends ListActivity {
         }
 
         public void addDevice(YdtDev device) {
+            /*
+             public String product = "产品:  ";
+    public String devProduct = null;
+    public String version = "版本:  ";
+    public String devVersion = null;
+    public String projectNum = "项目编号:  ";
+    public String devProjectNum = null;
+    public String dhcp = "DHCP:  ";
+    public String devDhcp = null;
+    public String ip = "IP地址:  ";
+    public String devIp = null;
+    public String mask = "子网掩码:  ";
+    public String devMask = null;
+    public String gateway = "网关:  ";
+    public String devGateway = null;
+    public String dns = "DNS:  ";
+    public String devDns = null;
+    public String svrIp = "一卡通IP:  ";
+    public String devSvrIp = null;
+    public String svrPort = "端口:  ";
+    public String devSvrPort = null;
+    public String ctrlPort = "协议端口:  ";
+    public String devCtrlPort = null;
+    public String num = "机号:  ";
+    public String devNum = null;
+    public String mac = "MAC:  ";
+    public String devMac = null;
+             */
+            Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + "====================");
+            for (YdtDev dev : mDevice){
+                if (dev.product != device.product)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",product not equal");
+                if (dev.devProduct != device.devProduct)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devProduct not equal");
+                if (dev.version != device.version)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",version not equal");
+                if (dev.devVersion != device.devVersion)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devVersion not equal");
+                if (dev.projectNum != device.projectNum)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",projectNum not equal");
+                if (!dev.devProjectNum.equals(device.devProjectNum))
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devProjectNum not equal");
+                if (dev.devProjectNum != device.devProjectNum)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devProjectNum not equal");
+                if (dev.dhcp != device.dhcp)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",dhcp not equal");
+                if (dev.devDhcp != device.devDhcp)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devDhcp not equal");
+                if (!dev.ip.equals(device.ip))
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",ip not equal");
+                if (dev.ip != device.ip)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",ip not equal");
+                Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devIp:"
+                        + dev.devIp + ",devIp:" + device.devIp);
+                if (dev.devIp != device.devIp)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devIp not equal");
+                if (dev.mask != device.mask)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",mask not equal");
+                Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devmask:"
+                        + dev.devMask + ",len:" + dev.devMask.length() + "!");
+                Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devmask:"
+                        + device.devMask + ",len:" + device.devMask.length() + "!");
+                if (dev.devMask != device.devMask)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMask not equal");
+                else
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMask equal");
+                if (dev.gateway != device.gateway)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",gateway not equal");
+                if (dev.devGateway != device.devGateway)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devGateway not equal");
+                if (dev.dns != device.dns)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",dns not equal");
+                if (dev.devDns != device.devDns)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devDns not equal");
+                if (dev.svrIp != device.svrIp)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",svrIp not equal");
+                if (dev.devSvrIp != device.devSvrIp)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devSvrIp not equal");
+                if (dev.svrPort != device.svrPort)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",svrPort not equal");
+                if (dev.devSvrPort != device.devSvrPort)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devSvrPort not equal");
+                if (dev.ctrlPort != device.ctrlPort)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",ctrlPort not equal");
+                if (dev.devCtrlPort != device.devCtrlPort)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devCtrlPort not equal");
+                if (dev.num != device.num)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",num not equal");
+                if (dev.devNum != device.devNum)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devNum not equal");
+                if (dev.mac != device.mac)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",mac not equal");
+                if (dev.devMac != device.devMac)
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMac not equal");
+                else
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMac equal");
+                if (dev.devMac.equals(device.devMac))
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMac equal");
+                else
+                    Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMac not equal");
+                Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMac:"
+                        + dev.devMac + ",len:" + dev.devMac.length() + "!");
+                Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",devMac:"
+                        + device.devMac + ",len:" + device.devMac.length() + "!");
+            }
+            if(mDevice.contains(device)){
+                Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",contains");
+            }
+            else{
+                Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",not contains");
+            }
             if(!mDevice.contains(device)) {
                 mDevice.add(device);
             }
+            Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + "====================");
         }
 
         public YdtDev getDevice(int position) {

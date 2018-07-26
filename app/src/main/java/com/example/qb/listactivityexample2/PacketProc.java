@@ -2,6 +2,7 @@ package com.example.qb.listactivityexample2;
 
 import android.util.Log;
 
+import java.nio.charset.Charset;
 import java.util.Queue;
 import java.util.Vector;
 
@@ -51,7 +52,7 @@ public class PacketProc extends PacketParse {
                     case cmdGetDeviceInfo:     //获取设备信息，对方应答
                     {
                         Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber());
-                        ydtDev = GetDeviceInfo(packetData.mBuf);
+                        ydtDev = GetDeviceInfo(packetData.mBuf, packetData);
                     }
                     break;
                 }
@@ -70,7 +71,7 @@ public class PacketProc extends PacketParse {
         return ydtDev;
     }
 
-    private YdtDev GetDeviceInfo(Vector container) {
+    private YdtDev GetDeviceInfo(Vector container, PacketData packetData) {
         //协议版本(1) + mac(6) + dhcp(1) + ip(4) + 子网掩码(4） + 网关(4) + dns(4) + 一卡通ip(4) + 端口(2) + 协议端口(2) + 项目编号(4)
         int i;
         String mac;
@@ -83,48 +84,106 @@ public class PacketProc extends PacketParse {
         String yktPort;
         String ctrlPort;
         String projectNum;
-        StringBuffer strBuffer = new StringBuffer("");
-        byte[] mMacByte = new byte[6];
+        String devNum;
+        String str;
 
-        for (i = 0; i < mMacByte.length; i++) {
-            mMacByte[i] = (byte)container.get(i + 3);
+        i = 3;
+        str = "";
+        for (int j = 0; j < 6; j++) {
+            Byte byteTemp = (byte)container.get(i++);
+            str += String.format("%02x", byteTemp & 0xFF);
+            if (j < 5) {
+                str += ":";
+            }
         }
-        mac = DataConversion.toHexString(mMacByte);
+        mac = str;
         if (0 == (byte) container.get(9)) {
             dhcp = "否";
         } else {
             dhcp = "是";
         }
         //ip地址
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",i:"
+                + container.get(i) + "," + container.get(i + 1) + ","  + container.get(i + 2)+ ","  + container.get(i + 3));
         i = 10;
-        strBuffer.setLength(0);     //清空
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        strBuffer.append(".");
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        strBuffer.append(".");
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        strBuffer.append(".");
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        ip = strBuffer.toString();
+        str = "";
+        for (int j = 0; j < 4; j++) {
+            Byte byteTemp = (byte)container.get(i++);
+            str += String.format("%d", byteTemp & 0xFF);
+            if (j < 3) {
+                str += ".";
+            }
+        }
+        ip = str;
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",ip:" + ip);
         //子网掩码
-        strBuffer.setLength(0);     //清空
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        strBuffer.append(".");
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        strBuffer.append(".");
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        strBuffer.append(".");
-        strBuffer.append(String.valueOf((byte) container.get(i++)));
-        mask = strBuffer.toString();
-        //
-        container.subList(10, 14).toArray();
-        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",array:"
-                + container.subList(10, 14).toArray() + ",mask:" + mask + ",ip:" + ip);
-//        byte[] myData = container.toArray(new byte[container.size()]);
-        //(String devProduct, String devVersion, String devProjectNum, String devDhcp, String devIp, String devMask,
-        //String devGateway, String devDns, String devSvrIp, String devSvrPort, String devCtrlPort, String devNum,
-        //        String devMac)
-        return new YdtDev("云电梯", "YDT0110 V1000", "88888888", dhcp, ip, mask, "192.168.123.254", "211.162.78.1", "192.168.123.120",
-                "12581", "60202", "88", mac);
+        str = "";
+        for (int j = 0; j < 4; j++) {
+            Byte byteTemp = (byte)container.get(i++);
+            str += String.format("%d", byteTemp & 0xFF);
+            if (j < 3) {
+                str += ".";
+            }
+        }
+        mask = str;
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",mask:" + mask);
+        //网关
+        str = "";
+        for (int j = 0; j < 4; j++) {
+            Byte byteTemp = (byte)container.get(i++);
+            str += String.format("%d", byteTemp & 0xFF);
+            if (j < 3) {
+                str += ".";
+            }
+        }
+        gateway = str;
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",gateway:" + gateway);
+        //dns
+        str = "";
+        for (int j = 0; j < 4; j++) {
+            Byte byteTemp = (byte)container.get(i++);
+            str += String.format("%d", byteTemp & 0xFF);
+            if (j < 3) {
+                str += ".";
+            }
+        }
+        dns = str;
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",dns:" + dns);
+        //一卡通服务器ip
+        str = "";
+        for (int j = 0; j < 4; j++) {
+            Byte byteTemp = (byte)container.get(i++);
+            str += String.format("%d", byteTemp & 0xFF);
+            if (j < 3) {
+                str += ".";
+            }
+        }
+        yktIp = str;
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",yktIp:" + yktIp);
+        //一卡通服务器端口
+        int intTmp = (int)(byte)container.get(i++) * 256 + (int)(byte)container.get(i++);
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",int:" + intTmp);
+//        yktPort = String.format("%d", ((int)(byte)container.get(i++) * 256 + (int)(byte)container.get(i++)));
+        yktPort = String.format("%d", intTmp);
+        //协议控制器端口
+        intTmp = (int)(byte)container.get(i++) * 256 + (int)(byte)container.get(i++);
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",int:" + intTmp);
+        ctrlPort = String.format("%d", intTmp);
+        //项目编号
+        str = "";
+        for (int j = 0; j < 4; j++) {
+            Byte byteTemp = (byte)container.get(i++);
+            str += String.format("%02x", byteTemp & 0xFF);
+            if (j < 3) {
+                str += ".";
+            }
+        }
+        projectNum = str;
+        Log.i(getClass().getName(), "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + ",projectNum:" + projectNum);
+        //设备机号
+        devNum = String.format("%d", packetData.mDevNum);
+
+        return new YdtDev("云电梯", "", projectNum, dhcp, ip,
+                mask, gateway, dns, yktIp, yktPort, ctrlPort, devNum, mac);
     }
 }

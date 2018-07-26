@@ -159,4 +159,24 @@ public class YdtDev {
     public String getDevMac() {
         return devMac;
     }
+
+    public boolean equals(Object obj) {
+        if (obj instanceof YdtDev) {
+            YdtDev u = (YdtDev) obj;
+            return this.devProduct.equals(u.devProduct)
+                    && this.devVersion.equals(u.devVersion)
+                    && this.devProjectNum.equals(u.devProjectNum)
+                    && this.devDhcp.equals(u.devDhcp)
+                    && this.devIp.equals(u.devIp)
+                    && this.devMask.equals(u.devMask)
+                    && this.devGateway.equals(u.devGateway)
+                    && this.devDns.equals(u.devDns)
+                    && this.devSvrIp.equals(u.devSvrIp)
+                    && this.devSvrPort.equals(u.devSvrPort)
+                    && this.devCtrlPort.equals(u.devCtrlPort)
+                    && this.devNum.equals(u.devNum)
+                    && this.devMac.equals(u.devMac);
+        }
+        return super.equals(obj);
+    }
 }

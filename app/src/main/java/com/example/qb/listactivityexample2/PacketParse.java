@@ -75,6 +75,7 @@ public abstract class PacketParse {
                     {
                         packetData.mBuf.add(data);
                         packetData.mStep++;
+                        Log.i("PacketParse", "line:" + Thread.currentThread().getStackTrace()[2].getLineNumber() + "byte:" + data);
                     }
                     else
                     {
